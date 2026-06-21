@@ -1,0 +1,63 @@
+.action-buttons-bar {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 32px 20px;
+  background: var(--deep, #2C0A0A);
+  border-top: 1px solid rgba(201, 146, 42, 0.2);
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 1px;
+  border: none;
+  transition: all 0.3s;
+}
+
+.action-btn:hover {
+  transform: translateY(-3px);
+}
+
+.action-btn-icon {
+  font-size: 1.2rem;
+}
+
+.whatsapp-btn {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-btn:hover {
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+}
+
+.calendar-btn {
+  background: linear-gradient(135deg, #C9922A, #8B5A00);
+  color: var(--deep, #2C0A0A);
+  box-shadow: 0 4px 20px rgba(201, 146, 42, 0.4);
+}
+
+.calendar-btn:hover {
+  box-shadow: 0 8px 30px rgba(201, 146, 42, 0.6);
+}
+
+/* Smaller variant used inside event cards */
+.event-calendar-btn {
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  border-radius: 18px;
+}
+
+.event-calendar-btn .action-btn-icon {
+  font-size: 1rem;
+}

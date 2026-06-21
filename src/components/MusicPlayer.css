@@ -1,0 +1,37 @@
+.music-player {
+  position: fixed; bottom: 24px; right: 24px; z-index: 200;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+}
+.music-toggle-btn {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: linear-gradient(135deg, #8B0000, #5C1A1A);
+  border: 2px solid rgba(201,146,42,0.6);
+  cursor: pointer; font-size: 1.4rem;
+  box-shadow: 0 4px 20px rgba(139,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.music-toggle-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(139,0,0,0.7); }
+.music-icon { display: block; transition: transform 0.3s; }
+.music-icon.spinning { animation: spin 3s linear infinite; }
+@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+.music-panel {
+  background: rgba(44,10,10,0.95); border: 1px solid rgba(201,146,42,0.4);
+  border-radius: 16px; padding: 16px; width: 200px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  text-align: center;
+}
+.music-title { color: #E8C87A; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 6px; font-family:'Cormorant Garamond',serif; }
+.music-track { color: rgba(245,230,192,0.7); font-size: 0.8rem; font-style: italic; margin-bottom: 12px; }
+.music-play-btn {
+  background: linear-gradient(135deg,#C9922A,#8B5A00);
+  border: none; border-radius: 20px; padding: 7px 20px;
+  color: #2C0A0A; font-family:'Cormorant Garamond',serif;
+  font-size: 0.9rem; font-weight: 700; cursor: pointer; margin-bottom: 12px;
+  transition: transform 0.2s;
+}
+.music-play-btn:hover { transform: scale(1.05); }
+.music-volume { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; font-size: 0.85rem; }
+.volume-slider { flex: 1; height: 3px; accent-color: #C9922A; cursor: pointer; }
+.music-note { color: rgba(245,230,192,0.35); font-size: 0.65rem; font-style: italic; line-height: 1.3; }

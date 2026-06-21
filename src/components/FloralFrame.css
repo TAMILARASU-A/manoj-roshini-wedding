@@ -1,0 +1,33 @@
+.floral-frame {
+  position: relative; padding: 48px 40px;
+  border: 2px solid rgba(201,146,42,0.3);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(253,246,227,0.95), rgba(250,240,215,0.95));
+}
+.ff-corner {
+  position: absolute; font-size: 1.8rem; line-height: 1;
+  animation: cornerPulse 3s ease-in-out infinite;
+}
+@keyframes cornerPulse { 0%,100%{transform:scale(1) rotate(0deg)} 50%{transform:scale(1.15) rotate(10deg)} }
+.ff-tl { top: -14px; left: -14px; }
+.ff-tr { top: -14px; right: -14px; transform: scaleX(-1); }
+.ff-bl { bottom: -14px; left: -14px; transform: scaleY(-1); }
+.ff-br { bottom: -14px; right: -14px; transform: scale(-1); }
+.ff-top, .ff-bottom {
+  position: absolute; left: 20px; right: 20px;
+  display: flex; justify-content: space-around; align-items: center;
+}
+.ff-top { top: -14px; }
+.ff-bottom { bottom: -14px; }
+.ff-top-flower, .ff-bottom-flower {
+  font-size: 1.1rem; animation: floatFlower 2s ease-in-out infinite alternate;
+}
+@keyframes floatFlower { 0%{transform:translateY(0) rotate(-5deg)} 100%{transform:translateY(-4px) rotate(5deg)} }
+.ff-left, .ff-right {
+  position: absolute; top: 20px; bottom: 20px;
+  display: flex; flex-direction: column; justify-content: space-around; align-items: center;
+}
+.ff-left { left: -14px; }
+.ff-right { right: -14px; }
+.ff-side-flower { font-size: 1rem; animation: floatFlower 2.5s ease-in-out infinite alternate; }
+.ff-content { position: relative; z-index: 1; }

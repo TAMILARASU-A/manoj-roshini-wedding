@@ -1,0 +1,43 @@
+.diya-wrap { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+.diya-flame-wrap { position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 2px; }
+.diya-flame-outer {
+  width: 18px; height: 28px;
+  background: linear-gradient(to top, #ff6600, #ffaa00, #ffdd00, transparent);
+  border-radius: 50% 50% 20% 20% / 60% 60% 30% 30%;
+  animation: flicker 0.4s ease-in-out infinite alternate;
+  filter: blur(1px);
+  position: absolute;
+}
+.diya-flame-inner {
+  width: 10px; height: 18px;
+  background: linear-gradient(to top, #ff9900, #ffcc00, #ffffaa, transparent);
+  border-radius: 50% 50% 20% 20% / 60% 60% 30% 30%;
+  animation: flicker 0.3s ease-in-out infinite alternate-reverse;
+  position: absolute;
+}
+.diya-flame-core {
+  width: 4px; height: 10px;
+  background: linear-gradient(to top, #ffffff, #ffffee);
+  border-radius: 50%;
+  position: absolute;
+}
+@keyframes flicker {
+  0% { transform: scaleX(1) scaleY(1) rotate(-2deg); opacity: 0.9; }
+  100% { transform: scaleX(0.85) scaleY(1.1) rotate(2deg); opacity: 1; }
+}
+.diya-wick {
+  width: 2px; height: 8px; background: #555; border-radius: 1px; z-index: 2; position: relative;
+}
+.diya-body {
+  background: linear-gradient(145deg, #C9922A, #8B5A00, #C9922A);
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  position: relative; overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.diya-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 40% 30%, rgba(255,200,80,0.4), transparent 70%);
+  animation: glowPulse 1s ease-in-out infinite alternate;
+}
+@keyframes glowPulse { 0%{opacity:0.5} 100%{opacity:1} }
+.diya-base { height: 4px; background: #7A4A00; border-radius: 0 0 4px 4px; }

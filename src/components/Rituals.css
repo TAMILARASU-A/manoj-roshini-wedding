@@ -1,0 +1,21 @@
+.rituals-section { background: linear-gradient(170deg, #2C0A0A 0%, #4A1010 100%); }
+.rituals-section .section-eyebrow { color: var(--gold-light,#E8C87A); }
+.rituals-section .section-title { color: var(--gold-light,#E8C87A); }
+.rituals-section .section-sub { color: rgba(245,230,192,0.7); }
+.rituals-section .floral-line { background: linear-gradient(90deg, transparent, var(--gold-light,#E8C87A), transparent); }
+.rituals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 12px; }
+.ritual-card {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(201,146,42,0.3);
+  border-radius: 16px; padding: 26px 22px; text-align: left; cursor: pointer;
+  transition: all 0.3s ease; backdrop-filter: blur(6px);
+}
+.ritual-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-4px); border-color: rgba(201,146,42,0.6); }
+.ritual-icon { font-size: 1.8rem; margin-bottom: 8px; }
+.ritual-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--gold-light,#E8C87A); font-style: italic; margin-bottom: 2px; }
+.ritual-tamil { font-family: 'Noto Serif Tamil', serif; font-size: 0.85rem; color: rgba(245,230,192,0.5); margin-bottom: 10px; }
+.ritual-desc {
+  color: rgba(245,230,192,0.75); font-size: 0.93rem; line-height: 1.6;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.ritual-open .ritual-desc { -webkit-line-clamp: unset; }
+.ritual-toggle { display: block; margin-top: 10px; font-size: 0.78rem; letter-spacing: 1px; color: var(--gold,#C9922A); text-transform: uppercase; }
