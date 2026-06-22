@@ -2,8 +2,7 @@ import "./ActionButtons.css";
 
 export default function ActionButtons() {
   const shareWhatsApp = () => {
-    const text = encodeURIComponent(
-      `🌸 You're Invited! 🌸
+    const message = `🌸 You're Invited! 🌸
 
 Manoj & Roshini
 are getting married!
@@ -20,9 +19,10 @@ of love and togetherness 💛
 
 View our wedding invite 💌
 👇
-${window.location.href}`
-    );
-    window.open(`https://wa.me/?text=${text}`, "_blank");
+${window.location.href}`;
+
+    const encoded = encodeURIComponent(message);
+    window.open(`https://api.whatsapp.com/send?text=${encoded}`, "_blank");
   };
 
   const addToCalendar = () => {
