@@ -381,7 +381,11 @@ export default function App() {
           <div className="footer-flowers">🌺 🪷 🌸 🌼 🌺</div>
           <div className="footer-credit-divider">
             <span className="footer-credit-line" />
-            <p className="footer-credit">அன்புடனும் ஆசியுடனும் — Nanban Tamilarasu 🙏</p>
+            <p className="footer-credit">
+              அன்புடனும் ஆசியுடனும்
+              <br/>
+              — Nanban Tamilarasu 🙏
+            </p>
             <span className="footer-credit-line" />
           </div>
         </div>

@@ -1,5 +1,5 @@
 .music-player {
-  position: fixed; bottom: 24px; right: 24px; z-index: 200;
+  position: fixed; bottom: 80px; right: 24px; z-index: 200;
   display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
 }
 .music-toggle-btn {
