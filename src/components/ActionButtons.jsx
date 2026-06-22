@@ -3,7 +3,24 @@ import "./ActionButtons.css";
 export default function ActionButtons() {
   const shareWhatsApp = () => {
     const text = encodeURIComponent(
-      "🌸 You're invited! 💍\n\nR.Manoj Kumar & T.Rosini's Wedding\n\n🪔 Reception: 24 Oct 2026\n🌸 Muhurtham: 25 Oct 2026\n📍 Sri Annanmar Swamy Temple Thirumana Mandapam, Thoravalur\n\nView the full invite: " + window.location.href
+      `🌸 You're Invited! 🌸
+
+Manoj & Roshini
+are getting married!
+
+🪔 Reception — 24 Oct 2026
+🌸 Muhurtham — 25 Oct 2026
+
+📍 Sri Annanmar Swamy Temple
+Thirumana Mandapam
+Thoravalur, Tamil Nadu
+
+Join us for this beautiful celebration
+of love and togetherness 💛
+
+View our wedding invite 💌
+👇
+${window.location.href}`
     );
     window.open(`https://wa.me/?text=${text}`, "_blank");
   };
