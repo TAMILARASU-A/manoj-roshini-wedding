@@ -184,8 +184,8 @@ export default function App() {
             <div className="couple-cards">
               <div className="couple-card">
                 <div className="couple-photo-wrap">
-                  <img src="/images/groom.jpg" alt="R.Manoj Kumar (மனோஜ் குமார்)" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
-                  <span className="couple-photo-fallback" style={{ display: 'none', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>🤵</span>
+                  <img src="/images/groom.jpg" alt="R.Manoj Kumar (மனோஜ் குமார்)" onLoad={(e) => { e.target.nextSibling.style.display = 'none'; }} onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+                  <span className="couple-photo-fallback" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>🤵</span>
                 </div>
                 <div className="couple-card-tag">Groom</div>
                 <h3 className="couple-name">R.Manoj Kumar <span className="couple-name-tamil">(மனோஜ் குமார்)</span></h3>
@@ -197,8 +197,8 @@ export default function App() {
               <div className="couple-heart-center">❤️</div>
               <div className="couple-card">
                 <div className="couple-photo-wrap">
-                  <img src="/images/bride.jpg" alt="T.Rosini ( ரோஷினி )" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
-                  <span className="couple-photo-fallback" style={{ display: 'none', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>👰</span>
+                  <img src="/images/bride.jpg" alt="T.Rosini ( ரோஷினி )" onLoad={(e) => { e.target.nextSibling.style.display = 'none'; }} onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+                  <span className="couple-photo-fallback" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>👰</span>
                 </div>
                 <div className="couple-card-tag">Bride</div>
                 <h3 className="couple-name">T.Rosini <span className="couple-name-tamil">( ரோஷினி )</span></h3>
