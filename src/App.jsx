@@ -103,7 +103,7 @@ export default function App() {
 
   const handleLoaderDone = () => { setLoading(false); };
   const scrollTo = (id) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setMenuOpen(false); };
-  const navLinks = [{ id: "hero", label: "Home" }, { id: "couple", label: "Couple" }, { id: "rituals", label: "Rituals" }, { id: "invitation", label: "Invitation" }, { id: "events", label: "Events" }, { id: "gallery", label: "Gallery" }, { id: "venue", label: "Venue" }, { id: "wishes", label: "Wishes" }];
+  const navLinks = [{ id: "hero", label: "Home" }, { id: "couple", label: "Couple" }, { id: "rituals", label: "Rituals" }, { id: "invitation", label: "Invitation" }, { id: "events", label: "Events" }, { id: "venue", label: "Venue" }, { id: "wishes", label: "Wishes" }];
 
   const addEventToCalendar = (title, start, end, details) => {
     const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&details=${encodeURIComponent(details)}&location=${encodeURIComponent("Sri Annanmar Swamy Temple Thirumana Mandapam, Thoravalur, Tamil Nadu 638103")}`;
@@ -142,7 +142,7 @@ export default function App() {
         <KolamBorder />
         <div className="hero-content">
           <div className="hero-om">ॐ</div>
-          <p className="hero-blessing">శుభ వివాహం • Shubh Vivah</p>
+          <p className="hero-blessing">சுப விவாහம் • Shubh Vivah</p>
           <p className="hero-invite-text">You are cordially invited to the wedding of</p>
           <div className="hero-names">
             <span className="hero-name groom">R.Manoj Kumar <span className="hero-name-tamil">(மனோஜ் குமார்)</span></span>
@@ -190,6 +190,7 @@ export default function App() {
                 <div className="couple-card-tag">Groom</div>
                 <h3 className="couple-name">R.Manoj Kumar <span className="couple-name-tamil">(மனோஜ் குமார்)</span></h3>
                 <p className="couple-degree">B.Com</p>
+                <p className="couple-location">Esan Polymers, Kanakampalayam, Tiruppur.</p>
                 <p className="couple-desc">The one who stole her heart with his warmth, dedication, and endless smile.</p>
                 <div className="couple-flowers">🌺 🪷 🌺</div>
               </div>
@@ -313,24 +314,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* GALLERY */}
-      <section id="gallery" className="section gallery-section">
-        <div className="section-inner">
-          <div className="section-eyebrow">📸 Gallery</div>
-          <h2 className="section-title">Our Moments</h2>
-          <p className="section-sub">A glimpse into our beautiful journey</p>
-          <FloralDivider />
-          <div className="gallery-grid">
-            {[{ emoji: "💑", label: "First Meeting", desc: "Where it all began" }, { emoji: "💍", label: "Engagement", desc: "She said yes!" }, { emoji: "🌺", label: "Mehendi", desc: "Beautiful traditions" }, { emoji: "🪔", label: "Haldi", desc: "Golden blessings" }, { emoji: "👰‍♀️", label: "Bridal Look", desc: "Radiant & beautiful" }, { emoji: "🎊", label: "Wedding", desc: "Forever begins" }, { emoji: "👨‍👩‍👧", label: "Family", desc: "Cherished moments" }, { emoji: "🎉", label: "Reception", desc: "Celebration night" }].map((item, i) => (
-              <div className="gallery-card" key={i}>
-                <div className="gallery-emoji">{item.emoji}</div>
-                <div className="gallery-overlay"><p className="gallery-label">{item.label}</p><p className="gallery-desc">{item.desc}</p></div>
-              </div>
-            ))}
-          </div>
-          <p className="gallery-note">📷 Photos will be updated after the ceremony</p>
-        </div>
-      </section>
 
       {/* VENUE */}
       <section id="venue" className="section venue-section">
@@ -383,7 +366,7 @@ export default function App() {
             <span className="footer-credit-line" />
             <p className="footer-credit">
               அன்புடனும் ஆசியுடனும்
-              <br/>
+              <br />
               — Nanban Tamilarasu 🙏
             </p>
             <span className="footer-credit-line" />

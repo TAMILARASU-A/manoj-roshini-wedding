@@ -17,7 +17,7 @@ const RITUALS = [
   {
     icon: "🌼",
     title: "Patni Seer",
-    tamil: "பத்னி சீர்",
+    tamil: "பட்டினி சீர்",
     desc: "These days, it's a hilarious, messy fun-game! The bride and groom are playfully 'bathed' by their moora (cousins/relatives) using turmeric water, leftover vegetables, rice water, and anything else on hand — a chaotic, laughter-filled tradition that bonds the families together before the big day."
   },
   {
@@ -31,12 +31,6 @@ const RITUALS = [
     title: "Thali Kattu",
     tamil: "தாலி கட்டு",
     desc: "The most sacred moment — the groom ties the Thali around the bride's neck with three knots, as temple bells ring and mantras are chanted, marking their sacred union forever."
-  },
-  {
-    icon: "💍",
-    title: "Mothiram Thedal",
-    tamil: "முத்திரம் தேடல்",
-    desc: "A playful post-wedding game where the couple searches for a ring hidden in a vessel of water or milk. The playful search is shared with family and guests — a lighthearted tradition symbolizing togetherness and laughter as the new couple begins married life."
   },
 ];
 
