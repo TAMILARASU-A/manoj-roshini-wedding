@@ -3,13 +3,7 @@ import "./Rituals.css";
 
 const RITUALS = [
   {
-    icon: "🤝",
-    title: "Nichayathartham",
-    tamil: "நிச்சயதார்த்தம்",
-    desc: "The groom's family visits the bride's family, exchanging plates of fruits and betel nuts. Both families mutually fix the wedding date, time, and venue — marking the formal start of the alliance."
-  },
-  {
-    icon: "🧂",
+    icon: "",
     title: "Uppu Vaanguthal",
     tamil: "உப்பு வாங்குதல்",
     desc: "Salt is considered sacred, and on an auspicious day both families assemble with two baskets of salt. After worship, they exchange and mix the salt, carrying it on the head of an agnate lady — a mark of solemnizing the betrothal."
