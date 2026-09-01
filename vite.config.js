@@ -4,6 +4,12 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    host: '0.0.0.0',
+    watch: {
+      ignored: ['**/public/images/invitation2.jpeg']
+    }
+  },
   define: {
     'import.meta.env.VITE_FIREBASE_API_KEY': JSON.stringify('AIzaSyB3cH9ihq7o5kaREOhj9g_jIp7ocHU9wXg'),
     'import.meta.env.VITE_FIREBASE_AUTH_DOMAIN': JSON.stringify('manoj-roshini-wedding.firebaseapp.com'),

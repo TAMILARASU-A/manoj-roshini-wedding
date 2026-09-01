@@ -6,7 +6,6 @@ import MusicPlayer from "./components/MusicPlayer";
 import FloralFrame from "./components/FloralFrame";
 import DivineBlessing from "./components/DivineBlessing";
 // StoryTimeline removed per request
-import Rituals from "./components/Rituals";
 import ActionButtons from "./components/ActionButtons";
 import WishesWall from "./components/WishesWall";
 
@@ -96,6 +95,7 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [petals, setPetals] = useState([]);
+  const [invitationIndex, setInvitationIndex] = useState(0);
 
   useEffect(() => { const s = () => setScrolled(window.scrollY > 60); window.addEventListener("scroll", s); return () => window.removeEventListener("scroll", s); }, []);
   useEffect(() => { setPetals(Array.from({ length: 18 }, (_, i) => ({ id: i, left: Math.random() * 100, delay: Math.random() * 8, dur: 6 + Math.random() * 6, size: 10 + Math.random() * 14, emoji: ["🌸", "🌺", "🌼", "🪷", "✨"][Math.floor(Math.random() * 5)] }))); }, []);
@@ -103,7 +103,10 @@ export default function App() {
 
   const handleLoaderDone = () => { setLoading(false); };
   const scrollTo = (id) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setMenuOpen(false); };
-  const navLinks = [{ id: "hero", label: "Home" }, { id: "couple", label: "Couple" }, { id: "rituals", label: "Rituals" }, { id: "invitation", label: "Invitation" }, { id: "events", label: "Events" }, { id: "venue", label: "Venue" }, { id: "wishes", label: "Wishes" }];
+  const navLinks = [{ id: "hero", label: "Home" }, { id: "couple", label: "Couple" }, { id: "invitation", label: "Invitation" }, { id: "events", label: "Events" }, { id: "venue", label: "Venue" }, { id: "wishes", label: "Wishes" }];
+  const invitationImages = ['/images/invitation1.png', '/images/invitation2.png'];
+  const showPrevInvitation = () => setInvitationIndex((prev) => (prev === 0 ? invitationImages.length - 1 : prev - 1));
+  const showNextInvitation = () => setInvitationIndex((prev) => (prev === invitationImages.length - 1 ? 0 : prev + 1));
 
   const addEventToCalendar = (title, start, end, details) => {
     const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&details=${encodeURIComponent(details)}&location=${encodeURIComponent("Sri Annanmar Swamy Temple Thirumana Mandapam, Thoravalur, Tamil Nadu 638103")}`;
@@ -165,9 +168,9 @@ export default function App() {
         <div className="section-inner">
           <div className="section-eyebrow">⏳ Counting Down</div>
           <h2 className="section-title">Until the Big Day</h2>
-          <p className="section-sub">Muhurtham · 25 October 2026, 7:00 AM</p>
+          <p className="section-sub">Muhurtham · 25 October 2026, 6:00 AM to 7:00 AM</p>
           <FloralDivider />
-          <Countdown target="2026-10-25T07:00:00" />
+          <Countdown target="2026-10-25T06:00:00" />
         </div>
       </section>
 
@@ -184,7 +187,7 @@ export default function App() {
             <div className="couple-cards">
               <div className="couple-card">
                 <div className="couple-photo-wrap">
-                  <img src="/images/groom.jpg" alt="R.Manoj Kumar (மனோஜ் குமார்)" onLoad={(e) => { e.target.nextSibling.style.display = 'none'; }} onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+                  <img src="/images/groom-cartoon.svg" alt="R.Manoj Kumar (மனோஜ் குமார்)" onLoad={(e) => { e.target.nextSibling.style.display = 'none'; }} onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
                   <span className="couple-photo-fallback" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>🤵</span>
                 </div>
                 <div className="couple-card-tag">Groom</div>
@@ -197,7 +200,7 @@ export default function App() {
               <div className="couple-heart-center">❤️</div>
               <div className="couple-card">
                 <div className="couple-photo-wrap">
-                  <img src="/images/bride.jpg" alt="T.Rosini ( ரோஷினி )" onLoad={(e) => { e.target.nextSibling.style.display = 'none'; }} onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+                  <img src="/images/bride-cartoon.svg" alt="T.Rosini ( ரோஷினி )" onLoad={(e) => { e.target.nextSibling.style.display = 'none'; }} onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
                   <span className="couple-photo-fallback" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>👰</span>
                 </div>
                 <div className="couple-card-tag">Bride</div>
@@ -233,9 +236,6 @@ export default function App() {
 
       {/* STORY TIMELINE removed */}
 
-      {/* RITUALS */}
-      <Rituals />
-
       {/* INVITATION (individual section) */}
       <section id="invitation" className="section invitation-section">
         <div className="section-inner">
@@ -244,15 +244,20 @@ export default function App() {
           <div className="invitation-divider" />
           <div className="invitation-frame">
             <img
-              src="/images/invitation-sample.jpg"
-              alt="Invitation"
+              src={invitationImages[invitationIndex]}
+              alt="Wedding Invitation"
               className="invitation-img"
               onError={(e) => {
                 const src = e.target.src || '';
-                if (src.endsWith('invitation-sample.jpg')) e.target.src = '/images/invitation-sample.png';
+                if (src.endsWith('invitation1.png')) e.target.src = '/images/invitation2.png';
+                else if (src.endsWith('invitation2.png')) e.target.style.display = 'none';
                 else e.target.style.display = 'none';
               }}
             />
+          </div>
+          <div className="invitation-controls">
+            <button className="invite-nav-btn" onClick={showPrevInvitation} type="button">Previous</button>
+            <button className="invite-nav-btn invite-nav-btn-primary" onClick={showNextInvitation} type="button">Next</button>
           </div>
         </div>
       </section>
@@ -294,7 +299,7 @@ export default function App() {
                 <div className="event-tag main-tag">Main Event</div>
                 <h3 className="event-name">Muhurtham</h3>
                 <p className="event-date">📅 Sunday, 25 October 2026</p>
-                <p className="event-time">⏰ Auspicious time: 7:00 AM</p>
+                <p className="event-time">⏰ Auspicious time: 6:00 AM to 7:00 AM</p>
                 <p className="event-venue">📍 Sri Annanmar Swamy Temple, Thoravalur</p>
                 <p className="event-note">The sacred union under the divine blessings of Sri Annanmar Swamy.</p>
                 <div style={{ marginTop: 10 }}>
