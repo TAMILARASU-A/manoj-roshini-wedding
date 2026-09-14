@@ -96,6 +96,8 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [petals, setPetals] = useState([]);
   const [invitationIndex, setInvitationIndex] = useState(0);
+  const [invitationBoxOpen, setInvitationBoxOpen] = useState(false);
+  const [swipeDirection, setSwipeDirection] = useState("");
 
   useEffect(() => { const s = () => setScrolled(window.scrollY > 60); window.addEventListener("scroll", s); return () => window.removeEventListener("scroll", s); }, []);
   useEffect(() => { setPetals(Array.from({ length: 18 }, (_, i) => ({ id: i, left: Math.random() * 100, delay: Math.random() * 8, dur: 6 + Math.random() * 6, size: 10 + Math.random() * 14, emoji: ["🌸", "🌺", "🌼", "🪷", "✨"][Math.floor(Math.random() * 5)] }))); }, []);
@@ -105,8 +107,17 @@ export default function App() {
   const scrollTo = (id) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setMenuOpen(false); };
   const navLinks = [{ id: "hero", label: "Home" }, { id: "couple", label: "Couple" }, { id: "invitation", label: "Invitation" }, { id: "events", label: "Events" }, { id: "venue", label: "Venue" }, { id: "wishes", label: "Wishes" }];
   const invitationImages = ['/images/invitation1.png', '/images/invitation2.png'];
-  const showPrevInvitation = () => setInvitationIndex((prev) => (prev === 0 ? invitationImages.length - 1 : prev - 1));
-  const showNextInvitation = () => setInvitationIndex((prev) => (prev === invitationImages.length - 1 ? 0 : prev + 1));
+  const changeInvitation = (direction) => {
+    setSwipeDirection(direction);
+    setTimeout(() => {
+      setInvitationIndex((prev) => (direction === 'next'
+        ? (prev === invitationImages.length - 1 ? 0 : prev + 1)
+        : (prev === 0 ? invitationImages.length - 1 : prev - 1)));
+    }, 170);
+    setTimeout(() => setSwipeDirection(''), 520);
+  };
+  const showPrevInvitation = () => changeInvitation('prev');
+  const showNextInvitation = () => changeInvitation('next');
 
   const addEventToCalendar = (title, start, end, details) => {
     const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&details=${encodeURIComponent(details)}&location=${encodeURIComponent("Sri Annanmar Swamy Temple Thirumana Mandapam, Thoravalur, Tamil Nadu 638103")}`;
@@ -130,7 +141,9 @@ export default function App() {
       <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
         <div className="nav-brand" onClick={() => scrollTo("hero")}>M ❤ R</div>
         <div className={`nav-links ${menuOpen ? "nav-open" : ""}`}>
-          {navLinks.map(l => <button key={l.id} className="nav-link" onClick={() => scrollTo(l.id)}>{l.label}</button>)}
+          {navLinks.map(l => (
+            <button key={l.id} className="nav-link" onClick={() => scrollTo(l.id)}>{l.label}</button>
+          ))}
         </div>
         <button className="nav-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="menu"><span /><span /><span /></button>
       </nav>
@@ -152,7 +165,6 @@ export default function App() {
             <span className="hero-ampersand">♥</span>
             <span className="hero-name bride">T.Rosini <span className="hero-name-tamil">( ரோஷினி )</span></span>
           </div>
-          <div className="hero-tamil">மனோஜ் குமார் & ரோஷினி</div>
           <div className="hero-dates">
             <div className="hero-date-pill">🪔 Reception · 24 October 2026</div>
             <div className="hero-date-pill">🌸 Muhurtham · 25 October 2026</div>
@@ -187,7 +199,7 @@ export default function App() {
             <div className="couple-cards">
               <div className="couple-card">
                 <div className="couple-photo-wrap">
-                  <img src="/images/groom-cartoon.svg" alt="R.Manoj Kumar (மனோஜ் குமார்)" onLoad={(e) => { e.target.nextSibling.style.display = 'none'; }} onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+                  <img src="/images/groom-cartoon.png" alt="R.Manoj Kumar (மனோஜ் குமார்)" onLoad={(e) => { e.target.nextSibling.style.display = 'none'; }} onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
                   <span className="couple-photo-fallback" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>🤵</span>
                 </div>
                 <div className="couple-card-tag">Groom</div>
@@ -200,7 +212,7 @@ export default function App() {
               <div className="couple-heart-center">❤️</div>
               <div className="couple-card">
                 <div className="couple-photo-wrap">
-                  <img src="/images/bride-cartoon.svg" alt="T.Rosini ( ரோஷினி )" onLoad={(e) => { e.target.nextSibling.style.display = 'none'; }} onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+                  <img src="/images/bride-cartoon.png" alt="T.Rosini ( ரோஷினி )" onLoad={(e) => { e.target.nextSibling.style.display = 'none'; }} onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
                   <span className="couple-photo-fallback" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>👰</span>
                 </div>
                 <div className="couple-card-tag">Bride</div>
@@ -242,22 +254,30 @@ export default function App() {
           <div className="section-eyebrow">YOU ARE CORDIALLY INVITED</div>
           <h2 className="section-title">Invitation</h2>
           <div className="invitation-divider" />
-          <div className="invitation-frame">
-            <img
-              src={invitationImages[invitationIndex]}
-              alt="Wedding Invitation"
-              className="invitation-img"
-              onError={(e) => {
-                const src = e.target.src || '';
-                if (src.endsWith('invitation1.png')) e.target.src = '/images/invitation2.png';
-                else if (src.endsWith('invitation2.png')) e.target.style.display = 'none';
-                else e.target.style.display = 'none';
-              }}
-            />
-          </div>
-          <div className="invitation-controls">
-            <button className="invite-nav-btn" onClick={showPrevInvitation} type="button">Previous</button>
-            <button className="invite-nav-btn invite-nav-btn-primary" onClick={showNextInvitation} type="button">Next</button>
+
+          <div className={`invitation-box ${invitationBoxOpen ? 'is-open' : ''}`}>
+            {!invitationBoxOpen ? (
+              <button className="invitation-box-trigger" type="button" onClick={() => setInvitationBoxOpen(true)}>
+                <span className="invitation-box-label">Open</span>
+              </button>
+            ) : (
+              <div className="invitation-box-content">
+                <button className="invitation-box-close" type="button" onClick={() => setInvitationBoxOpen(false)} aria-label="Close invitation">
+                  ✕
+                </button>
+
+                <div className="invitation-book single-page">
+                  <div className={`invitation-page active-page ${swipeDirection ? `swipe-${swipeDirection}` : ''}`}>
+                    <img src={invitationImages[invitationIndex]} alt="Wedding invitation page" className="invitation-book-img" />
+                  </div>
+                </div>
+
+                <div className="invitation-controls">
+                  <button className="invite-nav-btn" onClick={showPrevInvitation} type="button">Previous</button>
+                  <button className="invite-nav-btn invite-nav-btn-primary" onClick={showNextInvitation} type="button">Next</button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>

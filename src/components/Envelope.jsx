@@ -9,7 +9,9 @@ export default function Envelope({ onOpen }) {
     setPhase("opening");
     setTimeout(() => {
       setPhase("open");
-      setTimeout(() => onOpen(), 800);
+      if (typeof onOpen === "function") {
+        setTimeout(() => onOpen(), 350);
+      }
     }, 1800);
   };
 
@@ -35,8 +37,8 @@ export default function Envelope({ onOpen }) {
           {/* Bottom triangle */}
           <div className="env-bottom" />
           {/* Split top flaps opening from the center */}
-          <div className="env-flap-left" />
-          <div className="env-flap-right" />
+          <div className="env-flap env-flap-left" />
+          <div className="env-flap env-flap-right" />
           {/* Letter inside */}
           <div className="env-letter">
             <div className="env-letter-inner">

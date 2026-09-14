@@ -132,20 +132,31 @@
 .env-flap {
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 130px 160px 0 160px;
-  border-color: #6B0000 transparent transparent transparent;
+  width: 50%;
+  height: 140px;
+  background: linear-gradient(180deg, #7a0000 0%, #5f0000 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform-origin: top center;
   transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
-.envelope-wrap.opening .env-flap {
-  transform: rotateX(180deg);
+.env-flap-left {
+  left: 0;
+  transform-origin: top left;
+}
+
+.env-flap-right {
+  right: 0;
+  transform-origin: top right;
+}
+
+.envelope-wrap.opening .env-flap-left {
+  transform: rotateY(-130deg) rotateZ(-2deg);
+}
+
+.envelope-wrap.opening .env-flap-right {
+  transform: rotateY(130deg) rotateZ(2deg);
 }
 
 .env-letter {
@@ -163,6 +174,7 @@
   transform: translateY(0);
   opacity: 0;
   border: 1px solid rgba(201, 146, 42, 0.3);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 .envelope-wrap.opening .env-letter {
