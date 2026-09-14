@@ -157,7 +157,7 @@ export default function App() {
             <div className="hero-date-pill">🪔 Reception · 24 October 2026</div>
             <div className="hero-date-pill">🌸 Muhurtham · 25 October 2026</div>
           </div>
-          <div className="hero-location">📍 Sri Annanmar Swamy Temple Thirumana Mandapam, Thoravalur</div>
+          <div className="hero-location">📍 Sri Periya Kaandiyamman Thirumana Mandapam, Thoravalur</div>
           {/* invitation sample moved to its own section below */}
         </div>
         <KolamBorder />
@@ -193,7 +193,7 @@ export default function App() {
                 <div className="couple-card-tag">Groom</div>
                 <h3 className="couple-name">R.Manoj Kumar <span className="couple-name-tamil">(மனோஜ் குமார்)</span></h3>
                 <p className="couple-degree">B.Com</p>
-                <p className="couple-location">Esan Polymers, Kanakampalayam, Tiruppur.</p>
+                <p className="couple-location">Esan Polymers • Kanakampalayam • Tiruppur</p>
                 <p className="couple-desc">The one who stole her heart with his warmth, dedication, and endless smile.</p>
                 <div className="couple-flowers">🌺 🪷 🌺</div>
               </div>
@@ -205,7 +205,7 @@ export default function App() {
                 </div>
                 <div className="couple-card-tag">Bride</div>
                 <h3 className="couple-name">T.Rosini <span className="couple-name-tamil">( ரோஷினி )</span></h3>
-                <p className="couple-degree">B.Sc - Mathematics</p>
+                <p className="couple-degree">B.Sc - Maths</p>
                 <p className="couple-desc">The one whose grace, love, and laughter make every moment magical.</p>
                 <div className="couple-flowers">🌸 🌼 🌸</div>
               </div>
@@ -277,7 +277,7 @@ export default function App() {
                 <h3 className="event-name">Reception</h3>
                 <p className="event-date">📅 Saturday, 24 October 2026</p>
                 <p className="event-time">⏰ 6:00 PM onwards</p>
-                <p className="event-venue">📍 Sri Annanmar Swamy Temple Thirumana Mandapam, Thoravalur</p>
+                <p className="event-venue">📍 Sri Periya Kaandiyamman Thirumana Mandapam, Thoravalur</p>
                 <p className="event-note">Join us for an evening of celebration, music, and blessings as we begin this beautiful journey.</p>
                 <div style={{ marginTop: 10 }}>
                   <button className="action-btn calendar-btn event-calendar-btn" onClick={() => addEventToCalendar(
@@ -328,7 +328,7 @@ export default function App() {
           <FloralDivider />
           <div className="venue-card">
             <div className="venue-icon">🛕</div>
-            <h3 className="venue-name">Sri Annanmar Swamy Temple<br />Thirumana Mandapam</h3>
+            <h3 className="venue-name">Sri Periya Kaandiyamman<br />Thirumana Mandapam</h3>
             <img
               src="/images/venue.png"
               alt="Venue photo"

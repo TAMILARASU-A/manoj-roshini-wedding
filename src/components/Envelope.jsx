@@ -34,8 +34,9 @@ export default function Envelope({ onOpen }) {
           <div className="env-right" />
           {/* Bottom triangle */}
           <div className="env-bottom" />
-          {/* Top flap */}
-          <div className="env-flap" />
+          {/* Split top flaps opening from the center */}
+          <div className="env-flap-left" />
+          <div className="env-flap-right" />
           {/* Letter inside */}
           <div className="env-letter">
             <div className="env-letter-inner">

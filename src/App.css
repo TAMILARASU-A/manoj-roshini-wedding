@@ -104,7 +104,12 @@
 /* ===== HERO ===== */
 .hero {
   min-height: 100vh;
-  background: linear-gradient(160deg, #2C0A0A 0%, #5C1A1A 35%, #8B0000 60%, #6B2A00 100%);
+  background-image:
+    linear-gradient(rgba(32, 10, 10, 0.55), rgba(38, 10, 10, 0.68)),
+    url('/images/sunlit-ancient-temple-stockcake.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -140,13 +145,40 @@
   }
 }
 
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatGlow {
+
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translateY(-8px) scale(1.04);
+    opacity: 1;
+  }
+}
+
 .hero-bg-pattern {
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(201, 146, 42, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(201, 146, 42, 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(139, 0, 0, 0.3) 0%, transparent 70%);
+    radial-gradient(circle at 20% 30%, rgba(201, 146, 42, 0.22) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(201, 146, 42, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.18) 0%, transparent 65%);
+  animation: floatGlow 7s ease-in-out infinite;
 }
 
 .hero-content {
@@ -154,6 +186,7 @@
   z-index: 2;
   max-width: 700px;
   padding: 40px 20px;
+  animation: fadeUp 0.9s ease-out both;
 }
 
 .hero-om {
@@ -387,6 +420,13 @@
   align-items: center;
   justify-content: center;
   min-height: 420px;
+  animation: fadeUp 0.9s ease-out both;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.invitation-frame:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.5);
 }
 
 .invitation-img {
@@ -416,12 +456,14 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  animation: fadeUp 0.8s ease-out both;
 }
 
 .invite-nav-btn:hover {
   background: rgba(201, 146, 42, 0.12);
-  transform: translateY(-1px);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(201, 146, 42, 0.18);
 }
 
 .invite-nav-btn-primary {
@@ -555,6 +597,7 @@
   max-width: 900px;
   margin: 0 auto;
   text-align: center;
+  animation: fadeUp 0.85s ease-out both;
 }
 
 .section-eyebrow {
@@ -621,11 +664,13 @@
   padding: 24px 32px;
   min-width: 100px;
   box-shadow: 0 8px 30px rgba(139, 0, 0, 0.3);
-  transition: transform 0.2s;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: fadeUp 0.8s ease-out both;
 }
 
 .countdown-box:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 36px rgba(139, 0, 0, 0.38);
 }
 
 .countdown-num {
@@ -672,9 +717,10 @@
   min-height: 560px;
   max-width: 360px;
   box-shadow: 0 8px 40px rgba(139, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
+  animation: fadeUp 0.9s ease-out both;
 }
 
 .couple-card::before {
@@ -750,10 +796,14 @@
 
 .couple-location {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 0.95rem;
-  color: rgba(139, 0, 0, 0.75);
+  font-size: 0.96rem;
+  color: rgba(139, 0, 0, 0.8);
   margin: 0 0 12px;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-transform: none;
+  font-style: italic;
+  line-height: 1.5;
 }
 
 .couple-name-tamil {
@@ -964,12 +1014,14 @@
   max-width: 600px;
   width: 100%;
   backdrop-filter: blur(8px);
-  transition: transform 0.3s, background 0.3s;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeUp 1s ease-out both;
 }
 
 .event-card:hover {
-  transform: translateX(6px);
+  transform: translateX(6px) translateY(-2px);
   background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.18);
 }
 
 .event-card-main {
