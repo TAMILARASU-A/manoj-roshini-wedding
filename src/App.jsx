@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Loader from "./components/Loader";
 import Diya from "./components/Diya";
-import MusicPlayer from "./components/MusicPlayer";
+// MusicPlayer temporarily disabled
 import FloralFrame from "./components/FloralFrame";
 import DivineBlessing from "./components/DivineBlessing";
 // StoryTimeline removed per request
@@ -126,7 +126,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <a className="floating-download" href="/images/Manoj_Weds_Roshini.pdf" download aria-label="Download invitation">⬇️</a>
+      {/* floating download removed per request */}
       {loading && <Loader onDone={handleLoaderDone} />}
 
       {/* Falling petals */}
@@ -136,7 +136,7 @@ export default function App() {
         ))}
       </div>
 
-      <MusicPlayer />
+      {/* Music player disabled per request */}
 
       {/* Nav */}
       <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
