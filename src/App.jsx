@@ -126,6 +126,7 @@ export default function App() {
 
   return (
     <div className="app">
+      <a className="floating-download" href="/images/Manoj_Weds_Roshini.pdf" download aria-label="Download invitation">⬇️</a>
       {loading && <Loader onDone={handleLoaderDone} />}
 
       {/* Falling petals */}
@@ -161,9 +162,15 @@ export default function App() {
           <p className="hero-blessing">சுப விவாහம் • Shubh Vivah</p>
           <p className="hero-invite-text">You are cordially invited to the wedding of</p>
           <div className="hero-names">
-            <span className="hero-name groom">R.Manoj Kumar <span className="hero-name-tamil">(மனோஜ் குமார்)</span></span>
+            <div className="hero-name groom">
+              <span>R.Manoj Kumar</span>
+              <span className="hero-name-tamil">(மனோஜ் குமார்)</span>
+            </div>
             <span className="hero-ampersand">♥</span>
-            <span className="hero-name bride">T.Rosini <span className="hero-name-tamil">( ரோஷினி )</span></span>
+            <div className="hero-name bride">
+              <span>T.Rosini</span>
+              <span className="hero-name-tamil">(ரோஷினி)</span>
+            </div>
           </div>
           <div className="hero-dates">
             <div className="hero-date-pill">🪔 Reception · 24 October 2026</div>
@@ -203,7 +210,10 @@ export default function App() {
                   <span className="couple-photo-fallback" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>🤵</span>
                 </div>
                 <div className="couple-card-tag">Groom</div>
-                <h3 className="couple-name">R.Manoj Kumar <span className="couple-name-tamil">(மனோஜ் குமார்)</span></h3>
+                <h3 className="couple-name">
+                  <span>R.Manoj Kumar</span>
+                  <span className="couple-name-tamil">(மனோஜ் குமார்)</span>
+                </h3>
                 <p className="couple-degree">B.Com</p>
                 <p className="couple-location">Esan Polymers • Kanakampalayam • Tiruppur</p>
                 <p className="couple-desc">The one who stole her heart with his warmth, dedication, and endless smile.</p>
@@ -216,7 +226,10 @@ export default function App() {
                   <span className="couple-photo-fallback" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>👰</span>
                 </div>
                 <div className="couple-card-tag">Bride</div>
-                <h3 className="couple-name">T.Rosini <span className="couple-name-tamil">( ரோஷினி )</span></h3>
+                <h3 className="couple-name">
+                  <span>T.Rosini</span>
+                  <span className="couple-name-tamil">(ரோஷினி)</span>
+                </h3>
                 <p className="couple-degree">B.Sc - Maths</p>
                 <p className="couple-desc">The one whose grace, love, and laughter make every moment magical.</p>
                 <div className="couple-flowers">🌸 🌼 🌸</div>
@@ -257,14 +270,21 @@ export default function App() {
 
           <div className={`invitation-box ${invitationBoxOpen ? 'is-open' : ''}`}>
             {!invitationBoxOpen ? (
-              <button className="invitation-box-trigger" type="button" onClick={() => setInvitationBoxOpen(true)}>
-                <span className="invitation-box-label">Open</span>
-              </button>
+              <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexDirection: 'column' }}>
+                <button className="invitation-box-trigger" type="button" onClick={() => setInvitationBoxOpen(true)}>
+                  <span className="invitation-box-label">Open</span>
+                </button>
+                <a className="invite-btn" href="/images/Manoj_Weds_Roshini.pdf" download style={{ marginTop: 6 }}>⬇️ Download Invitation</a>
+              </div>
             ) : (
               <div className="invitation-box-content">
                 <button className="invitation-box-close" type="button" onClick={() => setInvitationBoxOpen(false)} aria-label="Close invitation">
                   ✕
                 </button>
+
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: 6 }}>
+                  <a className="invite-btn" href="/images/Manoj_Weds_Roshini.pdf" download>⬇️ Download Invitation</a>
+                </div>
 
                 <div className="invitation-book single-page">
                   <div className={`invitation-page active-page ${swipeDirection ? `swipe-${swipeDirection}` : ''}`}>
@@ -390,9 +410,9 @@ export default function App() {
           <div className="footer-credit-divider">
             <span className="footer-credit-line" />
             <p className="footer-credit">
-              அன்புடனும் ஆசியுடனும்
+              Built by —
               <br />
-              — Nanban Tamilarasu 🙏
+              Nanban Tamilarasu ✨
             </p>
             <span className="footer-credit-line" />
           </div>

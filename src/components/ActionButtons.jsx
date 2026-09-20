@@ -56,6 +56,10 @@ ${window.location.href}`;
         <span className="action-btn-icon">🗓️</span>
         <span>Add to Calendar</span>
       </button>
+      <a className="action-btn download-btn" href="/images/Manoj_Weds_Roshini.pdf" download>
+        <span className="action-btn-icon">⬇️</span>
+        <span>Download Invitation</span>
+      </a>
     </div>
   );
 }
