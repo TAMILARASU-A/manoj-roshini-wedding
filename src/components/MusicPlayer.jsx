@@ -81,18 +81,56 @@ export default function MusicPlayer() {
   // Attempt autoplay when a music file becomes available
   useEffect(() => {
     if (!available || !audioRef.current) return;
-    const tryPlay = async () => {
+    const audio = audioRef.current;
+    let mutedFallback = false;
+
+    const tryUnmuted = async () => {
       try {
-        // Attempt to play (may be blocked by browser autoplay policy)
-        try { audioRef.current.muted = false; } catch (_) { }
-        await audioRef.current.play();
+        audio.muted = false;
+        audio.volume = volume;
+        await audio.play();
         setPlaying(true);
       } catch (err) {
-        console.warn("Autoplay failed:", err);
+        console.warn("Unmuted autoplay failed, trying muted fallback:", err);
+        tryMuted();
+      }
+    };
+
+    const tryMuted = async () => {
+      try {
+        audio.muted = true;
+        audio.volume = volume;
+        await audio.play();
+        mutedFallback = true;
+        setPlaying(true);
+      } catch (err) {
+        console.warn("Muted autoplay also failed:", err);
         setPlaying(false);
       }
     };
-    tryPlay();
+
+    tryUnmuted();
+
+    const onFirstInteraction = async () => {
+      try {
+        if (mutedFallback && audio.muted) {
+          audio.muted = false;
+          audio.volume = volume;
+          await audio.play();
+          setPlaying(true);
+        }
+      } catch (err) {
+        console.warn("Unmute on interaction failed:", err);
+      }
+    };
+
+    window.addEventListener("click", onFirstInteraction, { once: true });
+    window.addEventListener("touchstart", onFirstInteraction, { once: true });
+
+    return () => {
+      window.removeEventListener("click", onFirstInteraction);
+      window.removeEventListener("touchstart", onFirstInteraction);
+    };
   }, [available]);
 
   return (
