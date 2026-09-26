@@ -95,6 +95,7 @@ export default function App() {
   const [showCover, setShowCover] = useState(true);
   const [loading, setLoading] = useState(false);
   const [appUnlocked, setAppUnlocked] = useState(false);
+  const [coverImage, setCoverImage] = useState("/images/initial.png");
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [petals, setPetals] = useState([]);
@@ -103,6 +104,18 @@ export default function App() {
   const [swipeDirection, setSwipeDirection] = useState("");
 
   useEffect(() => { const s = () => setScrolled(window.scrollY > 60); window.addEventListener("scroll", s); return () => window.removeEventListener("scroll", s); }, []);
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 768px)");
+    const updateCover = () => setCoverImage(media.matches ? "/images/initial.png" : "/images/initial1.png");
+    updateCover();
+    const listener = (event) => updateCover(event.matches);
+    if (typeof media.addEventListener === "function") {
+      media.addEventListener("change", listener);
+      return () => media.removeEventListener("change", listener);
+    }
+    media.addListener(listener);
+    return () => media.removeListener(listener);
+  }, []);
   useEffect(() => { setPetals(Array.from({ length: 18 }, (_, i) => ({ id: i, left: Math.random() * 100, delay: Math.random() * 8, dur: 6 + Math.random() * 6, size: 10 + Math.random() * 14, emoji: ["🌸", "🌺", "🌼", "🪷", "✨"][Math.floor(Math.random() * 5)] }))); }, []);
   useEffect(() => { document.body.style.overflow = showCover || loading || !appUnlocked ? "hidden" : "auto"; }, [showCover, loading, appUnlocked]);
   const handleLoaderDone = () => { setLoading(false); setAppUnlocked(true); };
@@ -141,7 +154,7 @@ export default function App() {
           tabIndex={0}
           aria-label="Open the wedding invitation"
         >
-          <img src="/images/initial.png" alt="Wedding invitation cover" className="tap-open-image" />
+          <img src={coverImage} alt="Wedding invitation cover" className="tap-open-image" />
         </div>
       )}
       {loading && <Loader onDone={handleLoaderDone} />}
