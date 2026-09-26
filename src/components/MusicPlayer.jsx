@@ -16,6 +16,7 @@ export default function MusicPlayer() {
   const [available, setAvailable] = useState(false);
   const [srcFile, setSrcFile] = useState(null);
   const [musicError, setMusicError] = useState("");
+  const [autoplayFailed, setAutoplayFailed] = useState(false);
   const audioRef = useRef(null);
 
   const toggle = async () => {
@@ -106,6 +107,7 @@ export default function MusicPlayer() {
       } catch (err) {
         console.warn("Muted autoplay also failed:", err);
         setPlaying(false);
+        setAutoplayFailed(true);
       }
     };
 
@@ -133,11 +135,32 @@ export default function MusicPlayer() {
     };
   }, [available]);
 
+  // User-triggered enable function for fallback UI
+  const enableAudio = async () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    try {
+      audio.muted = false;
+      audio.volume = volume;
+      await audio.play();
+      setPlaying(true);
+      setAutoplayFailed(false);
+    } catch (err) {
+      console.warn("Enable audio failed:", err);
+      setMusicError(err?.message || "Playback failed");
+    }
+  };
+
   return (
     <div className={`music-player ${expanded ? "expanded" : ""}`}>
       <audio ref={audioRef} loop>
         <source src="/music.mp3" type="audio/mpeg" />
       </audio>
+      {autoplayFailed && (
+        <div className="music-fallback-banner" onClick={enableAudio} role="button" tabIndex={0}>
+          ▶️ Tap to enable music
+        </div>
+      )}
       <button className="music-toggle-btn" onClick={() => setExpanded(e => !e)} title="Music Player">
         <span className={`music-icon ${playing ? "spinning" : ""}`}>🎵</span>
       </button>
