@@ -83,14 +83,12 @@ export default function MusicPlayer() {
   useEffect(() => {
     if (!available || !audioRef.current) return;
     const audio = audioRef.current;
-    let mutedFallback = false;
 
     const tryMuted = async () => {
       try {
         audio.muted = true;
         audio.volume = 0.3;
         await audio.play();
-        mutedFallback = true;
         setPlaying(true);
         setAutoplayFailed(false);
       } catch (err) {
@@ -117,24 +115,27 @@ export default function MusicPlayer() {
 
     const onFirstInteraction = async () => {
       try {
-        if (audio.muted) {
-          audio.muted = false;
-          audio.volume = volume;
-          await audio.play();
-          setPlaying(true);
-          setAutoplayFailed(false);
-        }
+        audio.muted = false;
+        audio.volume = volume;
+        await audio.play();
+        setPlaying(true);
+        setAutoplayFailed(false);
       } catch (err) {
         console.warn("Unmute on interaction failed:", err);
+        setMusicError(err?.message || "Playback failed");
       }
     };
 
-    window.addEventListener("click", onFirstInteraction, { once: true });
-    window.addEventListener("touchstart", onFirstInteraction, { once: true });
+    const unlock = () => { onFirstInteraction(); };
+
+    window.addEventListener("pointerdown", unlock, { once: true });
+    window.addEventListener("touchstart", unlock, { once: true });
+    window.addEventListener("click", unlock, { once: true });
 
     return () => {
-      window.removeEventListener("click", onFirstInteraction);
-      window.removeEventListener("touchstart", onFirstInteraction);
+      window.removeEventListener("pointerdown", unlock);
+      window.removeEventListener("touchstart", unlock);
+      window.removeEventListener("click", unlock);
     };
   }, [available, volume]);
 
