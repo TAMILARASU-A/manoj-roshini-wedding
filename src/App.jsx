@@ -8,6 +8,7 @@ import DivineBlessing from "./components/DivineBlessing";
 // StoryTimeline removed per request
 import ActionButtons from "./components/ActionButtons";
 import WishesWall from "./components/WishesWall";
+import MusicPlayer from "./components/MusicPlayer";
 
 const KolamBorder = () => (
   <svg viewBox="0 0 400 40" preserveAspectRatio="none" style={{ width: '100%', height: '40px', display: 'block' }}>
@@ -136,7 +137,7 @@ export default function App() {
         ))}
       </div>
 
-      {/* Music player disabled per request */}
+      <MusicPlayer />
 
       {/* Nav */}
       <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>

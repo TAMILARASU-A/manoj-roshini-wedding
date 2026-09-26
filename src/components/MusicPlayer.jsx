@@ -78,6 +78,23 @@ export default function MusicPlayer() {
     return () => { mounted = false; };
   }, []);
 
+  // Attempt autoplay when a music file becomes available
+  useEffect(() => {
+    if (!available || !audioRef.current) return;
+    const tryPlay = async () => {
+      try {
+        // Attempt to play (may be blocked by browser autoplay policy)
+        try { audioRef.current.muted = false; } catch (_) { }
+        await audioRef.current.play();
+        setPlaying(true);
+      } catch (err) {
+        console.warn("Autoplay failed:", err);
+        setPlaying(false);
+      }
+    };
+    tryPlay();
+  }, [available]);
+
   return (
     <div className={`music-player ${expanded ? "expanded" : ""}`}>
       <audio ref={audioRef} loop>
