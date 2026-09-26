@@ -85,29 +85,31 @@ export default function MusicPlayer() {
     const audio = audioRef.current;
     let mutedFallback = false;
 
+    const tryMuted = async () => {
+      try {
+        audio.muted = true;
+        audio.volume = 0.3;
+        await audio.play();
+        mutedFallback = true;
+        setPlaying(true);
+        setAutoplayFailed(false);
+      } catch (err) {
+        console.warn("Muted autoplay failed:", err);
+        setPlaying(false);
+        setAutoplayFailed(true);
+      }
+    };
+
     const tryUnmuted = async () => {
       try {
         audio.muted = false;
         audio.volume = volume;
         await audio.play();
         setPlaying(true);
+        setAutoplayFailed(false);
       } catch (err) {
         console.warn("Unmuted autoplay failed, trying muted fallback:", err);
         tryMuted();
-      }
-    };
-
-    const tryMuted = async () => {
-      try {
-        audio.muted = true;
-        audio.volume = volume;
-        await audio.play();
-        mutedFallback = true;
-        setPlaying(true);
-      } catch (err) {
-        console.warn("Muted autoplay also failed:", err);
-        setPlaying(false);
-        setAutoplayFailed(true);
       }
     };
 
@@ -115,11 +117,12 @@ export default function MusicPlayer() {
 
     const onFirstInteraction = async () => {
       try {
-        if (mutedFallback && audio.muted) {
+        if (audio.muted) {
           audio.muted = false;
           audio.volume = volume;
           await audio.play();
           setPlaying(true);
+          setAutoplayFailed(false);
         }
       } catch (err) {
         console.warn("Unmute on interaction failed:", err);
@@ -133,7 +136,7 @@ export default function MusicPlayer() {
       window.removeEventListener("click", onFirstInteraction);
       window.removeEventListener("touchstart", onFirstInteraction);
     };
-  }, [available]);
+  }, [available, volume]);
 
   // User-triggered enable function for fallback UI
   const enableAudio = async () => {
@@ -153,7 +156,7 @@ export default function MusicPlayer() {
 
   return (
     <div className={`music-player ${expanded ? "expanded" : ""}`}>
-      <audio ref={audioRef} loop>
+      <audio ref={audioRef} loop autoPlay muted>
         <source src="/music.mp3" type="audio/mpeg" />
       </audio>
       {autoplayFailed && (
