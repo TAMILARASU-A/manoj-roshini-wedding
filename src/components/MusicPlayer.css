@@ -22,6 +22,35 @@
   box-shadow: 0 8px 30px rgba(0,0,0,0.5);
   text-align: center;
 }
+.music-fallback-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(49, 18, 13, 0.9);
+  border: 1px solid rgba(201,146,42,0.45);
+  border-radius: 999px;
+  padding: 8px 14px 8px 12px;
+  color: #f8e7c4;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+  line-height: 1;
+}
+.music-fallback-banner::after {
+  content: "♫";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c9922a, #8b0000);
+  color: #fff9ef;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(201,146,42,0.35);
+}
 .music-title { color: #E8C87A; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 6px; font-family:'Cormorant Garamond',serif; }
 .music-track { color: rgba(245,230,192,0.7); font-size: 0.8rem; font-style: italic; margin-bottom: 12px; }
 .music-play-btn {
