@@ -139,7 +139,7 @@ export default function App() {
   const showNextInvitation = () => changeInvitation('next');
 
   const addEventToCalendar = (title, start, end, details) => {
-    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&details=${encodeURIComponent(details)}&location=${encodeURIComponent("Sri Annanmar Swamy Temple Thirumana Mandapam, Thoravalur, Tamil Nadu 638103")}`;
+    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&details=${encodeURIComponent(details)}&location=${encodeURIComponent("Sri Periya Kaandiyamman Thirumana Mandapam, Thoravalur, Tamil Nadu 638103")}`;
     window.open(url, "_blank");
   };
 
@@ -354,7 +354,7 @@ export default function App() {
                     "R.Manoj Kumar & T.Rosini - Reception",
                     "20261024T180000",
                     "20261024T230000",
-                    "Reception at Sri Annanmar Swamy Temple Thirumana Mandapam, Thoravalur, Tamil Nadu 638103"
+                    "Reception at Sri Periya Kaandiyamman Thirumana Mandapam, Thoravalur, Tamil Nadu 638103"
                   )}>
                     <span className="action-btn-icon">🗓️</span>
                     <span>Add to Calendar</span>
@@ -370,14 +370,14 @@ export default function App() {
                 <h3 className="event-name">Muhurtham</h3>
                 <p className="event-date">📅 Sunday, 25 October 2026</p>
                 <p className="event-time">⏰ Auspicious time: 6:00 AM to 7:00 AM</p>
-                <p className="event-venue">📍 Sri Annanmar Swamy Temple, Thoravalur</p>
-                <p className="event-note">The sacred union under the divine blessings of Sri Annanmar Swamy.</p>
+                <p className="event-venue">📍 Sri Periya Kaandiyamman Thirumana Mandapam, Thoravalur</p>
+                <p className="event-note">The sacred union under the divine blessings of Sri Periya Kaandiyamman.</p>
                 <div style={{ marginTop: 10 }}>
                   <button className="action-btn calendar-btn event-calendar-btn" onClick={() => addEventToCalendar(
                     "R.Manoj Kumar & T.Rosini - Muhurtham",
                     "20261025T070000",
                     "20261025T120000",
-                    "Wedding Muhurtham at Sri Annanmar Swamy Temple, Thoravalur, Tamil Nadu 638103"
+                    "Wedding Muhurtham at Sri Periya Kaandiyamman Thirumana Mandapam, Thoravalur, Tamil Nadu 638103"
                   )}>
                     <span className="action-btn-icon">🗓️</span>
                     <span>Add to Calendar</span>
@@ -416,7 +416,7 @@ export default function App() {
             />
             <p className="venue-address">Kunnathur-Sevur Road, Thoravalur<br />Tamil Nadu – 638103</p>
             {/* Map removed per request — only keeping Get Directions link */}
-            <a className="venue-directions-btn" href="https://maps.google.com/?q=SRI+ANNANMAAR+SWAMY+TEMPLE,Kunnathur-Sevur+Road,Thoravalur,Tamil+Nadu+638103" target="_blank" rel="noopener noreferrer">🗺️ Get Directions</a>
+            <a className="venue-directions-btn" href="https://maps.google.com/?q=SRI+PERIYA+KAANDIYAMMAN+THIRUMANA+MANDAPAM,Thoravalur,Tamil+Nadu+638103" target="_blank" rel="noopener noreferrer">🗺️ Get Directions</a>
           </div>
         </div>
       </section>

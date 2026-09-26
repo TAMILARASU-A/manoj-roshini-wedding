@@ -2,24 +2,14 @@ import "./ActionButtons.css";
 
 export default function ActionButtons() {
   const shareWhatsApp = () => {
-    const message = `🌸 You're Invited! 🌸
-
+    const message = `You’re invited to the wedding of
 Manoj & Roshini
-are getting married!
 
-🪔 Reception — 24 Oct 2026
-🌸 Muhurtham — 25 Oct 2026
+🪔 Reception: 24 Oct 2026
+🌸 Muhurtham: 25 Oct 2026
+📍 Sri Periya Kaandiyamman Thirumana Mandapam, Thoravalur
 
-📍 Sri Annanmar Swamy Temple
-Thirumana Mandapam
-Thoravalur, Tamil Nadu
-
-Join us for this beautiful celebration
-of love and togetherness 💛
-
-View our wedding invite 💌
-👇
-${window.location.href}`;
+View invite: ${window.location.href}`;
 
     const encoded = encodeURIComponent(message);
     window.open(`https://api.whatsapp.com/send?text=${encoded}`, "_blank");
@@ -31,17 +21,17 @@ ${window.location.href}`;
         title: "R.Manoj Kumar & T.Rosini - Reception",
         start: "20261024T180000",
         end: "20261024T230000",
-        details: "Reception at Sri Annanmar Swamy Temple Thirumana Mandapam, Thoravalur, Tamil Nadu 638103",
+        details: "Reception at Sri Periya Kaandiyamman Thirumana Mandapam, Thoravalur, Tamil Nadu 638103",
       },
       {
         title: "R.Manoj Kumar & T.Rosini - Muhurtham",
         start: "20261025T070000",
         end: "20261025T120000",
-        details: "Wedding Muhurtham at Sri Annanmar Swamy Temple Thirumana Mandapam, Thoravalur, Tamil Nadu 638103",
+        details: "Wedding Muhurtham at Sri Periya Kaandiyamman Thirumana Mandapam, Thoravalur, Tamil Nadu 638103",
       },
     ];
     events.forEach(e => {
-      const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(e.title)}&dates=${e.start}/${e.end}&details=${encodeURIComponent(e.details)}&location=${encodeURIComponent("Sri Annanmar Swamy Temple Thirumana Mandapam, Thoravalur, Tamil Nadu 638103")}`;
+      const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(e.title)}&dates=${e.start}/${e.end}&details=${encodeURIComponent(e.details)}&location=${encodeURIComponent("Sri Periya Kaandiyamman Thirumana Mandapam, Thoravalur, Tamil Nadu 638103")}`;
       window.open(url, "_blank");
     });
   };
