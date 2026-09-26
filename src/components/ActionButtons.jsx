@@ -9,6 +9,9 @@ Manoj & Roshini
 🌸 Muhurtham: 25 Oct 2026
 📍 Sri Periya Kaandiyamman Thirumana Mandapam, Thoravalur
 
+Join us for this beautiful celebration
+of love and togetherness 💛
+
 View invite: ${window.location.href}`;
 
     const encoded = encodeURIComponent(message);
