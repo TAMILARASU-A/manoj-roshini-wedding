@@ -92,7 +92,9 @@ function MurugarBadge() {
 // WishesWall component moved to ./components/WishesWall — imported above
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
+  const [showCover, setShowCover] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [appUnlocked, setAppUnlocked] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [petals, setPetals] = useState([]);
@@ -102,9 +104,12 @@ export default function App() {
 
   useEffect(() => { const s = () => setScrolled(window.scrollY > 60); window.addEventListener("scroll", s); return () => window.removeEventListener("scroll", s); }, []);
   useEffect(() => { setPetals(Array.from({ length: 18 }, (_, i) => ({ id: i, left: Math.random() * 100, delay: Math.random() * 8, dur: 6 + Math.random() * 6, size: 10 + Math.random() * 14, emoji: ["🌸", "🌺", "🌼", "🪷", "✨"][Math.floor(Math.random() * 5)] }))); }, []);
-  useEffect(() => { document.body.style.overflow = loading ? "hidden" : "auto"; }, [loading]);
-
-  const handleLoaderDone = () => { setLoading(false); };
+  useEffect(() => { document.body.style.overflow = showCover || loading || !appUnlocked ? "hidden" : "auto"; }, [showCover, loading, appUnlocked]);
+  const handleLoaderDone = () => { setLoading(false); setAppUnlocked(true); };
+  const openInvitation = () => {
+    setShowCover(false);
+    setLoading(true);
+  };
   const scrollTo = (id) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setMenuOpen(false); };
   const navLinks = [{ id: "hero", label: "Home" }, { id: "couple", label: "Couple" }, { id: "invitation", label: "Invitation" }, { id: "events", label: "Events" }, { id: "venue", label: "Venue" }, { id: "wishes", label: "Wishes" }];
   const invitationImages = ['/images/invitation1.png', '/images/invitation2.png'];
@@ -127,7 +132,18 @@ export default function App() {
 
   return (
     <div className="app">
-      {/* floating download removed per request */}
+      {showCover && !appUnlocked && (
+        <div
+          className="tap-open-overlay"
+          onClick={openInvitation}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openInvitation(); }}
+          role="button"
+          tabIndex={0}
+          aria-label="Open the wedding invitation"
+        >
+          <img src="/images/initial.png" alt="Wedding invitation cover" className="tap-open-image" />
+        </div>
+      )}
       {loading && <Loader onDone={handleLoaderDone} />}
 
       {/* Falling petals */}

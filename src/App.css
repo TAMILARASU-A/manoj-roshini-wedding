@@ -1,3 +1,25 @@
+.tap-open-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #100b0c;
+  z-index: 9999;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.tap-open-image {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+
 /* ===== PETALS ===== */
 .petals-container {
   position: fixed;
